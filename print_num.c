@@ -28,5 +28,5 @@ int print_number(int n)
 		div /= 10;
 	}
 
-	return (len)
+	return (len);
 }
