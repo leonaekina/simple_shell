@@ -40,13 +40,6 @@ char *build_path(char *, char *);
 void double_free(char **);
 void single_free(int, ...);
 
-/*Builtin function*/
-int built_in(char **, char *);
-void (*check_built_ins(char *))(char *);
-void exit_b(char *);
-void env_b(char *);
-void cd_b(char *);
-
 /*library functions*/
 int _strcmp(char *, char *);
 char *_strdup(char *);
@@ -57,4 +50,12 @@ int _write_char(char);
 /* Helper functions*/
 void error_printing(char *, int, char *);
 void exec_error(char *, int, char *);
+
+/*Builtin function*/
+int built_in(char **, char *);
+void (*check_built_ins(char *))(char *);
+void exit_b(char *);
+void env_b(char *);
+void cd_b(char *);
+
 #endif
