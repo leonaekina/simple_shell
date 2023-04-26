@@ -165,12 +165,12 @@ char *build_path(char *directory, char *command)
 
 	for (i = 0; i < len; i++)
 	{
-		for (k = 0; directory[j] != '\0'; k++, i++)
-			built[i] = directory[j];
+		for (k = 0; directory[k] != '\0'; k++, i++)
+			built[i] = directory[k];
 		built[i] = '/';
 		i++;
 		for (k = 0; command[k] != '\0'; k++, i++)
-			built[i] = command[j];
+			built[i] = command[k];
 	}
 	built[--i] = '\0';
 	return (built);
