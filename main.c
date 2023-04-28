@@ -1,27 +1,74 @@
 #include "main.h"
 
 /**
- * main - program.
- * @ac: The number of parameters In the case
- *		this variable will not be used
- * @av: The name of the program and other arguments.
- * Return: Always 0.
+ * free_data - frees data struct
+ *
+ * @datash: data structure
+ * Return: no return
  */
-int main(__attribute__((unused)) int ac, char **av)
+void free_data(data_shell *datash)
 {
-	char *line;
-	size_t size;
-	int command_counter;
+	unsigned int i;
 
-	command_counter = 0;
-	signal(SIGINT, SIG_IGN);
-	do {
-		command_counter++;
-		line = NULL;
-		size = 0;
-		parse_line(line, size, command_counter, av);
+	for (i = 0; datash->_environ[i]; i++)
+	{
+		free(datash->_environ[i]);
+	}
 
-	} while (1);
-
-	return (0);
+	free(datash->_environ);
+	free(datash->pid);
 }
+
+/**
+ * set_data - Initializes data structure
+ *
+ * @datash: data structure
+ * @av: argument vector
+ * Return: no return
+ */
+void set_data(data_shell *datash, char **av)
+{
+	unsigned int i;
+
+	datash->av = av;
+	datash->input = NULL;
+	datash->args = NULL;
+	datash->status = 0;
+	datash->counter = 1;
+
+	for (i = 0; environ[i]; i++)
+		;
+
+	datash->_environ = malloc(sizeof(char *) * (i + 1));
+
+	for (i = 0; environ[i]; i++)
+	{
+		datash->_environ[i] = _strdup(environ[i]);
+	}
+
+	datash->_environ[i] = NULL;
+	datash->pid = aux_itoa(getpid());
+}
+
+/**
+ * main - Entry point of prog
+ *
+ * @ac: argument count
+ * @av: argument vector
+ *
+ * Return: 0 on success.
+ */
+int main(int ac, char **av)
+{
+	data_shell datash;
+	(void) ac;
+
+	signal(SIGINT, get_sigint);
+	set_data(&datash, av);
+	shell_loop(&datash);
+	free_data(&datash);
+	if (datash.status < 0)
+		return (255);
+	return (datash.status);
+}
+
