@@ -1,7 +1,7 @@
 B.\"Manpage for simple shell
-.\"Created by Luis Chaparro and Edward Ortiz
+.\"Created by Leona Ekina and Wycliffe Ogeto
 
-.hsh 1 "August 2023" "Holberton School" "SODA SHELL - Simple Shell man page"
+.hsh 1 "August 2023" "ALX School" "HSH SHELL - Simple Shell man page"
 
 .SH NAME
 hsh\fR \- simple UNIX command interpreter
