@@ -19,7 +19,6 @@
 /* Points to an array of pointers to strings called the "environment" */
 extern char **environ;
 
-
 /**
  * struct data - struct that contains all relevant data on runtime
  * @av: argument vector
@@ -102,17 +101,17 @@ void free_line_list(line_list **head);
 r_var *add_rvar_node(r_var **head, int lvar, char *var, int lval);
 void free_rvar_list(r_var **head);
 
+/* aux_mem.c */
+void _memcpy(void *newptr, const void *ptr, unsigned int size);
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+char **_reallocdp(char **ptr, unsigned int old_size, unsigned int new_size);
+
 /* aux_str functions */
 char *_strcat(char *dest, const char *src);
 char *_strcpy(char *dest, char *src);
 int _strcmp(char *s1, char *s2);
 char *_strchr(char *s, char c);
 int _strspn(char *s, char *accept);
-
-/* aux_mem.c */
-void _memcpy(void *newptr, const void *ptr, unsigned int size);
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
-char **_reallocdp(char **ptr, unsigned int old_size, unsigned int new_size);
 
 /* aux_str2.c */
 char *_strdup(const char *s);
